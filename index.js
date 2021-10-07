@@ -24,7 +24,7 @@ inquirer
         },
         {
             type: 'input',
-            message: 'What is the team managers office phone number?',
+            message: 'What is the team managers office phone number (format: 555-555-5555)?',
             name: 'managerPhone',
             default: '555-555-5555'
         },
