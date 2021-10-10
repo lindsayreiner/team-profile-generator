@@ -1,23 +1,8 @@
-const Employee = require('../lib/employee');
 const Intern = require('../lib/intern');
 
-// describe('Word class', () => {
-//     it('Creates an array of Letter objects', () => {
-//         const word = new Word('hi');
+test('school', () => {
+    const internSchool = 'UNC Chapel Hill';
+    const intern = new Intern(internSchool);
+    expect(intern.school).toBe(internSchool);
+});
 
-//         expect(word.letters).toEqual(
-//             expect.arrayContaining([expect.objectContaining({ char: 'h' })])
-//         );
-
-//         expect(word.letters[0]).toBeInstanceOf(Letter);
-//     });
-
-//     describe('guessLetter', () => {
-//         it('Correct guess returns true', () => {
-//             expect(new Word('fish').guessLetter('i')).toBe(true);
-//         });
-
-//         it('Incorrect guess returns false', () => {
-//             expect(new Word('fish').guessLetter('o')).toBe(false);
-//         });
-//     });

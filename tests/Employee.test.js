@@ -1,22 +1,19 @@
 const Employee = require('../lib/employee');
 
-// describe('Word class', () => {
-//     it('Creates an array of Letter objects', () => {
-//         const word = new Word('hi');
+test('name', () => {
+    const employeeName = 'John Doe'
+    const employee = new Employee(employeeName);
+    expect(employee.name).toBe(employeeName);
+});
 
-//         expect(word.letters).toEqual(
-//             expect.arrayContaining([expect.objectContaining({ char: 'h' })])
-//         );
+test('id', () => {
+    const employeeID = '12-3456';
+    const employee = new Employee(employeeID);
+    expect(employee.id).toBe(employeeID);
+});
 
-//         expect(word.letters[0]).toBeInstanceOf(Letter);
-//     });
-
-//     describe('guessLetter', () => {
-//         it('Correct guess returns true', () => {
-//             expect(new Word('fish').guessLetter('i')).toBe(true);
-//         });
-
-//         it('Incorrect guess returns false', () => {
-//             expect(new Word('fish').guessLetter('o')).toBe(false);
-//         });
-//     });
+test('email', () => {
+    const employeeEmail = 'john@gmail.com';
+    const employee = new Employee(employeeEmail);
+    expect(employee.email).toBe(employeeEmail);
+});

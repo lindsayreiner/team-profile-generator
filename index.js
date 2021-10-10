@@ -9,20 +9,16 @@ const employees = [];
 
 const managerQuestions = [
     {
-        type: 'prompt',
-        message: 'Please build your team'
-    },
-    {
         type: 'input',
         message: 'What is the team manager\'s name?',
         name: 'managerName',
-        default: 'e.g. John Doe'
+        default: 'John Doe'
     },
     {
         type: 'input',
         message: 'What is the team manager\'s employee id #?',
         name: 'managerID',
-        default: 'format: 12-3456-789'
+        default: 'format: 12-3456'
     },
     {
         type: 'input',
@@ -35,15 +31,7 @@ const managerQuestions = [
         message: 'What is the team manager\'s office phone number (format: 555-555-5555)?',
         name: 'managerPhone',
         default: '555-555-5555'
-    },
-    {
-        type: 'list',
-        message: 'What type of team member would you like to add?',
-        choices: ['Engineer', 'Intern', 'I don\'t want to add any more team members'],
-        name: 'employeeType',
-        default: 'Engineer',
     }
-
 ];
 
 const engineerQuestions = [
@@ -51,13 +39,13 @@ const engineerQuestions = [
         type: 'input',
         message: 'What is your engineer\'s name?',
         name: 'engineerName',
-        default: 'e.g. John Doe'
+        default: 'Jake Doe'
     },
     {
         type: 'input',
         message: 'What is your engineer\'s employee id #?',
         name: 'engineerID',
-        default: 'format: 12-3456-789'
+        default: 'format: 12-3456'
     },
     {
         type: 'input',
@@ -69,15 +57,8 @@ const engineerQuestions = [
         type: 'input',
         message: 'What is your engineer\'s GitHub username?',
         name: 'engineerGitHub',
-    },
-    {
-        type: 'list',
-        message: 'What type of team member would you like to add?',
-        choices: ['Engineer', 'Intern', 'I don\'t want to add any more team members'],
-        name: 'employeeType',
-        default: 'Engineer',
+        default: 'jakedoe'
     }
-
 ];
 
 const internQuestions = [
@@ -85,7 +66,7 @@ const internQuestions = [
         type: 'input',
         message: 'What is your interns name?',
         name: 'internName',
-        default: 'e.g. John Doe'
+        default: 'Jane Doe'
     },
     {
         type: 'input',
@@ -103,7 +84,11 @@ const internQuestions = [
         type: 'input',
         message: 'What is your intern\'s school?',
         name: 'internSchool',
-    },
+        default: 'UNC Chapel Hill'
+    }
+];
+
+const addAnotherEmployee = [
     {
         type: 'list',
         message: 'What type of team member would you like to add?',
@@ -114,8 +99,47 @@ const internQuestions = [
 ];
 
 
+async function startQuestions() {
+    console.log('Please build your team')
+    const { managerName, managerID, managerEmail, managerPhone } = await prompt(managerQuestions);
+    const addNewEmployee = await prompt(addAnotherEmployee);
+    const newManager = new Manager(managerName, managerID, managerEmail, managerPhone);
+    employees.push(newManager);
+
+    nextEmployee(addNewEmployee.employeeType);
+
+};
+
+async function nextEmployee(answers) {
+    if (answers === 'Engineer') {
+        const { engineerName, engineerID, engineerEmail, engineerGithub } = await prompt(engineerQuestions);
+        const addNewEmployee = await prompt(addAnotherEmployee);
+        const newEngineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub);
+        employees.push(newEngineer);
+        nextEmployee(addNewEmployee.employeeType);
+        return
+
+    } else if (answers === 'Intern') {
+        const { internName, internID, internEmail, internSchool } = await prompt(internQuestions);
+        const addNewEmployee = await prompt(addAnotherEmployee);
+        const newIntern = new Engineer(internName, internID, internEmail, internSchool);
+        employees.push(newIntern);
+        nextEmployee(addNewEmployee.employeeType);
+        return
+    }
+
+
+    console.log('Team build complete!')
+    const data = await generateHTML(employees);
+    writeToFile(data);
+
+
+
+
+};
+
 function writeToFile(data) {
-    writeFile('index.html', data, (err) => {
+    writeFile('./dist/index.html', data, (err) => {
         if (err) {
             return console.log(err);
         } else {
@@ -123,41 +147,6 @@ function writeToFile(data) {
         }
     });
 }
-
-async function startQuestions() {
-    console.log('Please build your team')
-    const managerAnswers = await prompt(managerQuestions);
-    console.log(answers);
-
-    nextEmployee();
-
-};
-
-async function nextEmployee() {
-    if (employeeType === 'Engineer') {
-        const { engineerName, engineerID, engineerEmail, engineerGithub } = await prompt(engineerQuestions);
-        const newEngineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub);
-        employees.push(newEngineer);
-        console.log(answers);
-
-    } else if (employeeType === 'Intern') {
-        const { internName, internID, internEmail, internSchool } = await prompt(internQuestions);
-        const newIntern = new Engineer(internName, internID, internEmail, internSchool);
-        employees.push(newIntern);
-        console.log(answers);
-    } else {
-        (employeeType === 'I don\'t want to add any more team members')
-        console.log('Team build complete!')
-    };
-
-    console.log(answers);
-
-    const data = await generateHTML(answers);
-    writeToFile(data);
-
-};
-
-
 
 function init() {
     startQuestions();
