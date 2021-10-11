@@ -18,21 +18,29 @@ const managerQuestions = [
         type: 'input',
         message: 'What is the team manager\'s employee id #?',
         name: 'managerID',
-        default: 'format: 12-3456'
+        default: '123',
+        // validate: async function (input) {
+        //     if (isNaN(input) || input < 1 || input > 5000) {
+        //         return 'Employee ID must be a number between 1 and 5000'
+        //     } else {
+        //         return '---Employee ID has been accepted---'
+        //     }
+        // }
     },
     {
         type: 'input',
         message: 'What is the team manager\'s email address?',
         name: 'managerEmail',
-        default: 'manager@email.com'
+        default: 'manager@email.com',
     },
     {
         type: 'input',
-        message: 'What is the team manager\'s office phone number (format: 555-555-5555)?',
+        message: 'What is the team manager\'s office phone number?',
         name: 'managerPhone',
         default: '555-555-5555'
     }
 ];
+
 
 const engineerQuestions = [
     {
@@ -45,7 +53,7 @@ const engineerQuestions = [
         type: 'input',
         message: 'What is your engineer\'s employee id #?',
         name: 'engineerID',
-        default: 'format: 12-3456'
+        default: '12-3456'
     },
     {
         type: 'input',
@@ -72,7 +80,7 @@ const internQuestions = [
         type: 'input',
         message: 'What is your interns employee id #?',
         name: 'internID',
-        default: 'format: 12-3456'
+        default: '12-3456'
     },
     {
         type: 'input',
@@ -99,8 +107,9 @@ const addAnotherEmployee = [
 ];
 
 
-async function startQuestions() {
-    console.log('Please build your team')
+
+const startQuestions = async input => {
+    console.log('Please build your team starting with the Manager:')
     const { managerName, managerID, managerEmail, managerPhone } = await prompt(managerQuestions);
     const addNewEmployee = await prompt(addAnotherEmployee);
     const newManager = new Manager(managerName, managerID, managerEmail, managerPhone);
@@ -110,8 +119,10 @@ async function startQuestions() {
 
 };
 
-async function nextEmployee(answers) {
+const nextEmployee = async answers => {
     if (answers === 'Engineer') {
+        console.log('Adding an Engineer to your team.....');
+        console.log('Please enter this Engineer\'s information:')
         const { engineerName, engineerID, engineerEmail, engineerGithub } = await prompt(engineerQuestions);
         const addNewEmployee = await prompt(addAnotherEmployee);
         const newEngineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub);
@@ -120,30 +131,27 @@ async function nextEmployee(answers) {
         return
 
     } else if (answers === 'Intern') {
+        console.log('Adding an Intern to your team.....')
+        console.log('Please enter this Intern\'s information:')
         const { internName, internID, internEmail, internSchool } = await prompt(internQuestions);
         const addNewEmployee = await prompt(addAnotherEmployee);
-        const newIntern = new Engineer(internName, internID, internEmail, internSchool);
+        const newIntern = new Intern(internName, internID, internEmail, internSchool);
         employees.push(newIntern);
         nextEmployee(addNewEmployee.employeeType);
         return
     }
 
-
     console.log('Team build complete!')
     const data = await generateHTML(employees);
     writeToFile(data);
-
-
-
-
 };
 
-function writeToFile(data) {
+const writeToFile = data => {
     writeFile('./dist/index.html', data, (err) => {
         if (err) {
             return console.log(err);
         } else {
-            console.log("Team saved successfully.");
+            console.log("Team dashboard ready to view.");
         }
     });
 }

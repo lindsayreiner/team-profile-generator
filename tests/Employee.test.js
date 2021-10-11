@@ -8,12 +8,12 @@ test('name', () => {
 
 test('id', () => {
     const employeeID = '12-3456';
-    const employee = new Employee(employeeID);
+    const employee = new Employee('John Doe', employeeID);
     expect(employee.id).toBe(employeeID);
 });
 
 test('email', () => {
     const employeeEmail = 'john@gmail.com';
-    const employee = new Employee(employeeEmail);
+    const employee = new Employee('John Doe', '12-3456', employeeEmail);
     expect(employee.email).toBe(employeeEmail);
 });
