@@ -6,15 +6,15 @@ const managerCard = manager => {
     console.log(manager);
     return ` <div class="card" style="width: 18rem">
               <div class="card-body">
-                <h5 class="card-title">${managerQuestions.managerName} </h5>
+                <h5 class="card-title">${manager.name} </h5>
                 <p class="card-text">
                   ☕Manager
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:${managerQuestions.managerID}</li>
-                <li class="list-group-item">Email:${managerQuestions.managerEmail}</li>
-                <li class="list-group-item">Office Number:${managerQuestions.managerPhone}</li>
+                <li class="list-group-item">ID:${manager.id}</li>
+                <li class="list-group-item">Email:${manager.email}</li>
+                <li class="list-group-item">Office Number:${manager.officeNumber}</li>
               </ul>
             </div>`
 
@@ -24,15 +24,15 @@ const engineerCard = engineer => {
     console.log(engineer);
     return ` <div class="card" style="width: 18rem">
               <div class="card-body">
-                <h5 class="card-title">${engineerName}</h5>
+                <h5 class="card-title">${engineer.name}</h5>
                 <p class="card-text">
                  👓Engineer
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:${engineerID}</li>
-                <li class="list-group-item">Email:${engineerEmail}</li>
-                <li class="list-group-item">GitHub:${engineerGithub}</li>
+                <li class="list-group-item">ID:${engineer.id}</li>
+                <li class="list-group-item">Email:${engineer.email}</li>
+                <li class="list-group-item">GitHub:${engineer.github}</li>
               </ul>
             </div>`
 }
@@ -41,15 +41,15 @@ const internCard = intern => {
     console.log(intern)
     return ` <div class="card" style="width: 18rem">
               <div class="card-body">
-                <h5 class="card-title">${internName}</h5>
+                <h5 class="card-title">${intern.name}</h5>
                 <p class="card-text">
                   🎓Intern
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${internID}</li>
-                <li class="list-group-item">Email: ${internEmail}</li>
-                <li class="list-group-item">School:${internSchool}</li>
+                <li class="list-group-item">ID: ${intern.id}</li>
+                <li class="list-group-item">Email: ${intern.email}</li>
+                <li class="list-group-item">School:${intern.school}</li>
               </ul>
             </div>`
 }
