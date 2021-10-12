@@ -1,20 +1,18 @@
 const fs = require('fs');
-const js = require('../index')
 
 
 const managerCard = manager => {
-    console.log(manager);
-    return ` <div class="card" style="width: 18rem">
-              <div class="card-body">
+    return ` <div class="card col shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+              <div class="manager-body card-body">
                 <h5 class="card-title">${manager.name} </h5>
                 <p class="card-text">
-                  ☕Manager
+                  ☕  Manager
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:${manager.id}</li>
-                <li class="list-group-item">Email:${manager.email}</li>
-                <li class="list-group-item">Office Number:${manager.officeNumber}</li>
+                <li class="list-group-item"><strong>ID: </strong>${manager.id}</li>
+                <li class="list-group-item"><strong>Email: </strong>${manager.email}</li>
+                <li class="list-group-item"><strong>Office Number: </strong>${manager.officeNumber}</li>
               </ul>
             </div>`
 
@@ -22,34 +20,33 @@ const managerCard = manager => {
 
 const engineerCard = engineer => {
     console.log(engineer);
-    return ` <div class="card" style="width: 18rem">
-              <div class="card-body">
+    return ` <div class="card col shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+              <div class="engineer-body card-body">
                 <h5 class="card-title">${engineer.name}</h5>
                 <p class="card-text">
-                 👓Engineer
+                 👓  Engineer
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID:${engineer.id}</li>
-                <li class="list-group-item">Email:${engineer.email}</li>
-                <li class="list-group-item">GitHub:${engineer.github}</li>
+                <li class="list-group-item"><strong>ID: </strong>${engineer.id}</li>
+                <li class="list-group-item"><strong>Email: </strong>${engineer.email}</li>
+                <li class="list-group-item"><strong>GitHub: </strong>${engineer.github}</li>
               </ul>
             </div>`
 }
 
 const internCard = intern => {
-    console.log(intern)
-    return ` <div class="card" style="width: 18rem">
-              <div class="card-body">
+    return ` <div class="card col shadow p-3 mb-5 bg-body rounded" style="width: 18rem">
+              <div class="intern-body card-body">
                 <h5 class="card-title">${intern.name}</h5>
                 <p class="card-text">
-                  🎓Intern
+                  🎓  Intern
                 </p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${intern.id}</li>
-                <li class="list-group-item">Email: ${intern.email}</li>
-                <li class="list-group-item">School:${intern.school}</li>
+                <li class="list-group-item"><strong>ID: </strong>${intern.id}</li>
+                <li class="list-group-item"><strong>Email: </strong>${intern.email}</li>
+                <li class="list-group-item"><strong>School: </strong>${intern.school}</li>
               </ul>
             </div>`
 }
@@ -60,16 +57,14 @@ const generateTeam = team => {
     teamMembers.push(team.filter(employee => employee.getRole() === 'Engineer').map(engineer => engineerCard(engineer)));
     teamMembers.push(team.filter(employee => employee.getRole() === 'Intern').map(intern => internCard(intern)));
 
-    managerCard();
-    engineerCard();
-    internCard();
-    generateHTML();
+    return teamMembers.join('')
+
 
 }
 
 
 // Create function to generateHTML
-const generateHTML = team => {
+const generateHTML = teamMembers => {
     return `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,20 +77,18 @@ const generateHTML = team => {
       href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
   <body>
     <header>My Team</header>
     <div class="card-container">
-    <div class="container">
+    <div class="container d-flex justify-content-center">
       <div class="row">
-        <div class="d-flex col-12 justify-content-center">
-          <div class="card-container">
-           
-    ${generateTeam(team)}
-     </div>
-        </div>
+        
+    ${generateTeam(teamMembers)}
+     
       </div>
     </div>
     </div>

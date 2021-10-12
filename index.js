@@ -53,7 +53,7 @@ const engineerQuestions = [
         type: 'input',
         message: 'What is your engineer\'s employee id #?',
         name: 'engineerID',
-        default: '12-3456'
+        default: '456'
     },
     {
         type: 'input',
@@ -80,7 +80,7 @@ const internQuestions = [
         type: 'input',
         message: 'What is your interns employee id #?',
         name: 'internID',
-        default: '12-3456'
+        default: '789'
     },
     {
         type: 'input',
@@ -151,7 +151,7 @@ const writeToFile = data => {
         if (err) {
             return console.log(err);
         } else {
-            console.log("Team dashboard ready to view.");
+            console.log("Dashboard ready to view.");
         }
     });
 }

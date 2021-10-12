@@ -4,17 +4,50 @@ html {
 }
 
 body {
+  height: 100%;
   margin: 0 auto;
   font-family: "Red Hat Display", sans-serif;
 }
 
 header {
-  background-color: rgb(209, 60, 60);
+  background-color: rgb(107, 107, 107);
   color: white;
   font-size: 4rem;
   font-weight: 900;
   width: 100%;
-  min-height: 1vh;
   text-align: center;
-  padding: 50px 0;
+  padding: 25px 0;
+}
+
+.card {
+  margin-right: 2rem;
+  margin-top: 6rem;
+}
+
+.card-title,
+.card-text {
+  font-weight: bold;
+  color: white;
+}
+
+.container {
+  /* height: 100%; */
+}
+
+.manager-body {
+  background-color: rgb(148, 56, 56);
+}
+
+.engineer-body {
+  background-color: rgb(73, 73, 151);
+}
+
+.intern-body {
+  background-color: rgb(209, 209, 128);
+}
+
+@media screen and (min-width: 367px) {
+  .card {
+    flex-direction: column;
+  }
 }
