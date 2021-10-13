@@ -31,7 +31,7 @@ const managerQuestions = [
         type: 'input',
         message: 'What is the team manager\'s email address?',
         name: 'managerEmail',
-        default: 'manager@email.com',
+        default: 'johndoe@email.com',
     },
     {
         type: 'input',
@@ -59,7 +59,7 @@ const engineerQuestions = [
         type: 'input',
         message: 'What is your engineer\'s email address?',
         name: 'engineerEmail',
-        default: 'manager@email.com'
+        default: 'jakedoe@email.com'
     },
     {
         type: 'input',
@@ -86,7 +86,7 @@ const internQuestions = [
         type: 'input',
         message: 'What is your intern\'s email address?',
         name: 'internEmail',
-        default: 'manager@email.com'
+        default: 'janedoe@email.com'
     },
     {
         type: 'input',
@@ -123,9 +123,9 @@ const nextEmployee = async answers => {
     if (answers === 'Engineer') {
         console.log('Adding an Engineer to your team.....');
         console.log('Please enter this Engineer\'s information:')
-        const { engineerName, engineerID, engineerEmail, engineerGithub } = await prompt(engineerQuestions);
+        const { engineerName, engineerID, engineerEmail, engineerGitHub } = await prompt(engineerQuestions);
         const addNewEmployee = await prompt(addAnotherEmployee);
-        const newEngineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGithub);
+        const newEngineer = new Engineer(engineerName, engineerID, engineerEmail, engineerGitHub);
         employees.push(newEngineer);
         nextEmployee(addNewEmployee.employeeType);
         return
