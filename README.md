@@ -8,6 +8,8 @@ This application was created for HR or Managers to build team rosters that inclu
 
 Deployed website: https://lindsayreiner.github.io/team-profile-generator/
 
+<img src="assets/images/10-object-oriented-programming-homework-demo.png" alt="portfolio-screenshot">
+
 # Table of contents
 
 [Installation](#installation)  
@@ -19,7 +21,7 @@ Deployed website: https://lindsayreiner.github.io/team-profile-generator/
 
 # Installation
 
-The following dependencies must be installed to use this application: Inquirer is needed to run the team building script within tyour terminal. Jest will also be needed for testing.
+The following dependencies must be installed to use this application: Inquirer is needed to run the team building script within your terminal. Jest will also be needed for testing.
 
 # Usage
 
